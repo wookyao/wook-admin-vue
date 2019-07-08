@@ -2,19 +2,19 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <van-button class="ui-button" block type="primary">主要按钮</van-button>
+    <a-button type="primary">Primary</a-button>
   </div>
 </template>
 
 <script>
 import HelloWorld from 'components/HelloWorld.vue'
-import {Button} from 'vant'
+import { Button } from 'ant-design-vue'
 
 export default {
   name: 'home',
   components: {
     HelloWorld,
-    [Button.name]: Button 
+    [Button.name]: Button
   },
   methods: {
     getDetails() {

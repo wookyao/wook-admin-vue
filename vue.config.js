@@ -31,17 +31,8 @@ module.exports = {
   outputDir: OUTPUT_DIR,
   css: {
     loaderOptions: {
-      postcss: {
-        plugins: [
-          autoprefixer(),
-          pxtoremEach({
-            rootValue: (file) => {
-              let isVant = /node_modules/.test(file) && /vant/.test(file)
-              return isVant ? 16 : 32
-            },
-            propList: ['*']
-          })
-        ]
+      less: {
+        javascriptEnabled: true
       },
       sass: {
         data: `$sitePrefix:'${serverConfig.sitePrefix}';`
