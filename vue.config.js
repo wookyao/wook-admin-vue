@@ -27,6 +27,7 @@ function tryMock (req, res) {
 }
 
 module.exports = {
+  publicPath: serverConfig.sitePrefix,
   lintOnSave: false,
   outputDir: OUTPUT_DIR,
   css: {
@@ -45,6 +46,7 @@ module.exports = {
       alias: {
         'serverConfig': path.resolve(__dirname, './serverConfig.js'),
         'components': path.resolve(__dirname, './src/components'),
+        'pages': path.resolve(__dirname, './src/pages'),
         'views': path.resolve(__dirname, './src/views'),
         'scripts': path.resolve(__dirname, './src/scripts'),
         'assets': path.resolve(__dirname, './src/assets'),
@@ -52,10 +54,9 @@ module.exports = {
       }
     },
     devServer: {
+      writeToDisk: true,
       contentBase: path.join(__dirname, 'dist'),
-      allowedHosts: [
-        '*'
-      ],
+      historyApiFallback: true,
       proxy: {
         '/api': {
           target: serverConfig.apiServePrefix,
