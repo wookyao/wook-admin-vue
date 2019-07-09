@@ -2,10 +2,10 @@ const isProduction = process.env.NODE_ENV === 'production'
 
 // 本地
 let sitePrefix = '/'
-let apiServePrefix = '//localhost:8081/'
-let apiPrefix = '/api/'
+let apiServePrefix = 'https://easy-mock.com/mock/5d243fc2c4acae5527f0798f/wookadmin'
+let apiPrefix = '/api'
 // 是否开启mock
-let disableMock = false
+let disableMock = true
 
 // 线上
 if (isProduction) {

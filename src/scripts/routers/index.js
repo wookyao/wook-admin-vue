@@ -1,24 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import mod from './mod'
+
+import components from './components'
 
 Vue.use(Router)
 
 const routers = new Router({
-  routes: [
-    {
-      path: `/`,
-      redirect: `/login`
-    },
-    mod,
-    {
-      path: '/login',
-      component: () => import('pages/login'),
-      meta: {
-        title: '管理员登录'
-      }
+  routes: [{
+    path: `/`,
+    redirect: `/components/home`
+  }, {
+    path: '/login',
+    component: () => import('pages/login'),
+    meta: {
+      title: '管理员登录'
     }
-  ]
+  }, components ]
 })
 
 routers.beforeEach((to, from, next) => {

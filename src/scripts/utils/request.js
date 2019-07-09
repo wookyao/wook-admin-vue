@@ -19,13 +19,10 @@ axios.interceptors.response.use(afterResponse, responseError)
  * request 请求之前处理
  */
 function beforeRequest (config) {
-  console.log(config)
+  if (!config.url) throw new Error('Request 请求缺少 url 参数')
   if (config.url) {
     config.url = serverConfig.apiPrefix + config.url
   }
-
-  if (!config.url) throw new Error('Request 请求缺少 url 参数')
-
   // 全局 Loading,如果需要可使用UI组件的toast
   if (config.loading) {
 
@@ -50,23 +47,6 @@ function requestError (error) {
 /**
  * response 响应之后处理
  */
-const ERROR_CODE = {
-  '0000': '操作成功',
-  '9985': '数据不存在',
-  '9986': '已删除',
-  '9987': '账号已存在',
-  '9988': '密码错误',
-  '9989': '账号不存在',
-  '9991': '短信验证码错误',
-  '9992': '文件上传错误',
-  '9993': '文件上传错误',
-  '9994': '参数错误',
-  '9995': '图片上传失败',
-  '9996': '短信发送失败',
-  '9997': '必填参数为空',
-  '9998': '无数据',
-  '9999': '系统错误'
-}
 function afterResponse (response) {
   // 全局 Loading,在此处清除toast
   if (response.config.loading) {
@@ -76,7 +56,7 @@ function afterResponse (response) {
   let data = response.data || {}
   let code = data.code
 
-  if (code !== '0000') {
+  if (code !== 0) {
     // 请求失败再次做一些处理
     data.fail = true
   }
