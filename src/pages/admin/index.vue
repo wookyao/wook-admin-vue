@@ -3,8 +3,9 @@
     <div class="side">
       <SideMenu v-if="menus.length" :menus='menus' />
     </div>
-    
-    <router-view />
+    <div class="main">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -50,14 +51,23 @@ export default {
   overflow: hidden;
 
   .side {
-    width: 236px;
+    position: relative;
+    z-index: 99;
+    width: 235px;
     height: 100vh;
     background: #fff;
     box-shadow: 0 4px 6px 0 rgba($color-bg-gray, .8);
+    transition: width .3s ease-in;
 
     .ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
       border: none;
     }
+  }
+  .main {
+    position: relative;
+    z-index: 88;
+    box-sizing: border-box;
+    flex: 1;
   }
 }
 
