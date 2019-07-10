@@ -55,16 +55,16 @@ export default {
   position: absolute;
   right: 20px;
   left: 20px;
-  bottom: 10px;
+  bottom: 4px;
   display: flex;
-  height: 36px;
+  height: 42px;
   background: #fff;
   color: $color-desc;
-  border-radius: 18px;
+  border-radius: 21px;
   box-shadow: 0 4px 10px 0 rgba(#000, .03);
 
   &-item {
-    margin-top: 6px;
+    margin-top: 9px;
     padding: 0 20px;
     display: inline-block;
     height: 26px;
