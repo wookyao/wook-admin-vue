@@ -2,21 +2,27 @@
   <div class="bottom-bar">
     <a-icon v-if='!inlineCollapsed' class="bottom-bar--icon" type="bell" />
     <div class="avatar-wrap">
-      <img class="avatar" :src="userinfo.avatar" :alt="userinfo.name">
+      <a-tooltip>
+        <template slot='title'>
+          {{userinfo.name}}
+        </template>
+        <img class="avatar" :src="userinfo.avatar" :alt="userinfo.name">
+      </a-tooltip>
     </div>
     <a-icon v-if='!inlineCollapsed' class="bottom-bar--icon" type="login" />
   </div>
 </template>
 
 <script>
-import { Badge, Icon } from 'ant-design-vue'
+import { Badge, Icon, Tooltip } from 'ant-design-vue'
 
 export default {
   name: 'BottomBar',
 
   components: {
     [Badge.name]: Badge,
-    [Icon.name]: Icon
+    [Icon.name]: Icon,
+    [Tooltip.name]: Tooltip
   },
 
   props: {
