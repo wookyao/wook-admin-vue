@@ -3,16 +3,21 @@
     <div :class="['side', {'collapsed': inlineCollapsed}]">
       <Trapezoid @toggle='inlineCollapsed = !inlineCollapsed' />
       <Logo :inlineCollapsed='inlineCollapsed' />
-      <SideMenu v-if="menus.length" :menus='menus' :inlineCollapsed='inlineCollapsed' />
+      <div class="scroll-view">
+        <SideMenu v-if="menus.length" :menus='menus' :inlineCollapsed='inlineCollapsed' />
+      </div>
       <BottomBar :inlineCollapsed='inlineCollapsed' />
     </div>
     <div class="main">
-      <router-view />
+      <scroll-view>
+        <router-view />
+      </scroll-view>
     </div>
   </div>
 </template>
 
 <script>
+import ScrollView from 'components/ScrollView'
 import Trapezoid from 'components/Trapezoid'
 import Logo from 'components/Logo'
 import SideMenu from 'components/SideMenu'
@@ -22,6 +27,7 @@ export default {
   name: 'AdminIndex',
 
   components: {
+    ScrollView,
     Trapezoid,
     Logo,
     SideMenu,
@@ -79,7 +85,7 @@ export default {
     height: 100vh;
     background: #fff;
     box-shadow: 0 4px 6px 0 rgba($color-bg-gray, .8);
-    transition: width .3s ease-in;
+    transition: width .3s ease;
 
     .ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
       border: none;
@@ -87,12 +93,23 @@ export default {
     &.collapsed {
       width: 80px;
     }
+    .scroll-view {
+      position: absolute;
+      top: 75px;
+      right: 0;
+      bottom: 60px;
+      left: 0;
+      z-index: 9;
+    }
   }
   .main {
     position: relative;
     z-index: 88;
     box-sizing: border-box;
     flex: 1;
+    padding: 0 20px;
+    height: 100vh;
+    overflow: hidden;
   }
 }
 

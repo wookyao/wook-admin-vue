@@ -1,40 +1,43 @@
 <template>
   <div class="side-menu">
-    <a-menu
-      :defaultSelectedKeys="defaultSelectedKeys"
-      :mode="mode"
-      :openKeys="openKeys"
-      :inlineCollapsed="inlineCollapsed"
-      @openChange="onOpenChange"
-      @select='handlerSelect'
-    >
-      <template v-for="(item, idx) in menus">
-        <a-menu-item
-          v-if="!item.children || !item.children.length"
-          :key="item.path">
-          <a-icon v-if='item.icon' :type="item.icon" />
-          {{item.title}}
-        </a-menu-item>
-        <a-sub-menu
-          v-if="item.children && item.children.length > 0" 
-          :key="'sub' + idx">
-          <span slot="title">
-            <a-icon v-if='item.icon' :type="item.icon" />
-            <span>{{item.title}}</span>
-          </span>
+    <scroll-view>
+      <a-menu
+        :defaultSelectedKeys="defaultSelectedKeys"
+        :mode="mode"
+        :openKeys="openKeys"
+        :inlineCollapsed="inlineCollapsed"
+        @openChange="onOpenChange"
+        @select='handlerSelect'
+      >
+        <template v-for="(item, idx) in menus">
           <a-menu-item
-            v-for="sub in item.children"
-            :key="sub.path">
-            {{sub.title}}
+            v-if="!item.children || !item.children.length"
+            :key="item.path">
+            <a-icon v-if='item.icon' :type="item.icon" />
+            {{item.title}}
           </a-menu-item>
-        </a-sub-menu>
-      </template>
-    </a-menu>
+          <a-sub-menu
+            v-if="item.children && item.children.length > 0" 
+            :key="'sub' + idx">
+            <span slot="title">
+              <a-icon v-if='item.icon' :type="item.icon" />
+              <span>{{item.title}}</span>
+            </span>
+            <a-menu-item
+              v-for="sub in item.children"
+              :key="sub.path">
+              {{sub.title}}
+            </a-menu-item>
+          </a-sub-menu>
+        </template>
+      </a-menu>
+    </scroll-view>
   </div>
 </template>
 
 <script>
 import { Menu, Icon } from 'ant-design-vue'
+import ScrollView from 'components/ScrollView'
 
 export default {
   name: 'SideMenu',
@@ -45,7 +48,8 @@ export default {
     [Menu.SubMenu.name]: Menu.SubMenu,
     [Menu.Divider.name]: Menu.Divider,
     [Menu.ItemGroup.name]: Menu.ItemGroup,
-    [Icon.name]: Icon
+    [Icon.name]: Icon,
+    ScrollView
   },
 
   props: {
@@ -104,7 +108,8 @@ export default {
 <style lang="scss" scoped>
 @import '@/styles/index.scss';
 .side-menu {
-
+  width: 100%;
+  height: 100%;
 }
 </style>
 
