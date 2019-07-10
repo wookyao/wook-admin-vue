@@ -9,6 +9,7 @@
       <BottomBar :inlineCollapsed='inlineCollapsed' />
     </div>
     <div class="main">
+      <RouterTabs />
       <scroll-view>
         <router-view />
       </scroll-view>
@@ -22,6 +23,8 @@ import Trapezoid from 'components/Trapezoid'
 import Logo from 'components/Logo'
 import SideMenu from 'components/SideMenu'
 import BottomBar from 'components/BottomBar'
+import RouterTabs from 'components/RouterTabs'
+import { Icon } from 'ant-design-vue'
 
 export default {
   name: 'AdminIndex',
@@ -31,7 +34,9 @@ export default {
     Trapezoid,
     Logo,
     SideMenu,
-    BottomBar
+    BottomBar,
+    RouterTabs,
+    [Icon.name]: Icon
   },
 
   data () {
@@ -107,7 +112,7 @@ export default {
     z-index: 88;
     box-sizing: border-box;
     flex: 1;
-    padding: 0 20px;
+    padding: 0 20px 51px;
     height: 100vh;
     overflow: hidden;
   }
