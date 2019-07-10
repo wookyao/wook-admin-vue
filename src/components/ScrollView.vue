@@ -31,7 +31,11 @@ export default {
     wheel: {
       type: Boolean,
       default: true
-    }
+		},
+		scrollX: {
+			type: Boolean,
+			default: false
+		}
 	},
 	mounted() {
 		this.$nextTick(()=> {
@@ -41,7 +45,7 @@ export default {
 	methods: {
 		_initScroll() {
 			if(!this.$refs.wrapper) return;
-			this.scroll = new BScroll(this.$refs.wrapper, {
+			let opts = {
 				probeType: this.probeType,
 				click: this.click,
         bounce: this.bounce,
@@ -50,10 +54,19 @@ export default {
           fade: true,
           interactive: false // 1.8.0 新增
         },
-			})
+			}
+
+			if (this.scrollX) {
+				opts = {
+					...opts,
+					scrollX: true,
+					scrollY: false
+				}
+			}
+
+			this.scroll = new BScroll(this.$refs.wrapper, opts)
     },
     refresh() {
-      console.log(this.scroll)
       this.scroll && this.scroll.refresh()
     },
 	},

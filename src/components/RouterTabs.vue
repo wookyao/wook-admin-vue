@@ -1,19 +1,25 @@
 <template>
   <div class="tabs">
-    <div :class="['tabs-item', {'active': current == item.path}]" v-for='item in tabs' :key='item.path' >
-      <span class="txt" @click="handlerClick(item.path)">{{item.title}}</span>
-      <a-icon v-if="current !== item.path" type="close" />
-    </div>
+    <scroll-view >
+      <div :class="['tabs-item', {'active': current == item.path}]" v-for='item in tabs' :key='item.path' >
+        <span class="txt" @click="handlerClick(item.path)">{{item.title}}</span>
+        <a-icon v-if="current !== item.path" type="close" />
+      </div>
+    </scroll-view>
+    
   </div>
 </template>
 
 <script>
 import { Icon } from 'ant-design-vue'
+import ScrollView from 'components/ScrollView'
+
 export default {
   name: 'RouterTabs',
 
   components: {
-    [Icon.name]: Icon
+    [Icon.name]: Icon,
+    ScrollView
   },
   
   data () {
