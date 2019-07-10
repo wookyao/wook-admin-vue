@@ -1,7 +1,10 @@
 <template>
   <div class="page-admin">
-    <div class="side">
-      <SideMenu v-if="menus.length" :menus='menus' />
+    <div :class="['side', {'collapsed': inlineCollapsed}]">
+      <Trapezoid @toggle='inlineCollapsed = !inlineCollapsed' />
+      <Logo :inlineCollapsed='inlineCollapsed' />
+      <SideMenu v-if="menus.length" :menus='menus' :inlineCollapsed='inlineCollapsed' />
+      <BottomBar :inlineCollapsed='inlineCollapsed' />
     </div>
     <div class="main">
       <router-view />
@@ -10,18 +13,26 @@
 </template>
 
 <script>
+import Trapezoid from 'components/Trapezoid'
+import Logo from 'components/Logo'
 import SideMenu from 'components/SideMenu'
+import BottomBar from 'components/BottomBar'
 
 export default {
   name: 'AdminIndex',
 
   components: {
-    SideMenu
+    Trapezoid,
+    Logo,
+    SideMenu,
+    BottomBar
   },
 
   data () {
     return {
-      menus: []
+      inlineCollapsed: false,
+      menus: [],
+      logo: require('@/assets/images/logo.png')
     }
   },
 
@@ -33,6 +44,17 @@ export default {
       }).then(res => {
         if(res.fail) return false
         this.menus = res.data
+        this.setMenus(res.data)
+      })
+    },
+
+    setMenus (data) {
+      let role = 1
+      let menus = []
+      data.map(item => {
+        if (item.role.includes(0)) {
+
+        }
       })
     }
   },
@@ -61,6 +83,9 @@ export default {
 
     .ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
       border: none;
+    }
+    &.collapsed {
+      width: 80px;
     }
   }
   .main {

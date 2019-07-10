@@ -11,6 +11,11 @@ module.exports = {
   css: {
     loaderOptions: {
       less: {
+        modifyVars: {
+          'primary-color': '#00E6BF',
+          'success-color': '#00E6BF',
+          'error-color': '#FF8585'
+        },
         javascriptEnabled: true
       },
       sass: {
