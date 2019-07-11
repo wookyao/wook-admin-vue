@@ -27,7 +27,6 @@
 import { Pagination, Drawer } from 'ant-design-vue'
 
 import VHeader from './vheader'
-import VForm from './vform'
 
 export default {
   name: 'FormTable',
@@ -35,7 +34,6 @@ export default {
   components: {
     Pagination,
     VHeader,
-    VForm,
     [Drawer.name]: Drawer
   },
 
