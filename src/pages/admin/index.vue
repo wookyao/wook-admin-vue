@@ -37,7 +37,6 @@ export default {
 
   watch: {
     '$route.path': (newVal, oldVal) => {
-      console.log(newVal)
     }
   },
 
@@ -76,6 +75,13 @@ export default {
   created () {
     this.headerTitle = this.$route.meta.title
     this.getMenus()
+  },
+
+  mounted () {
+    this.inlineCollapsed = document.body.clientWidth <= 960
+    window.onresize = () => {
+      this.inlineCollapsed = document.body.clientWidth <= 960
+    }
   }
 }
 </script>
@@ -83,6 +89,7 @@ export default {
 <style lang="scss">
 @import '@/styles/index.scss';
 .page-admin {
+  min-width: 960px!important;
   display: flex;
   flex-direction: row;
   overflow: hidden;
@@ -116,7 +123,7 @@ export default {
     z-index: 88;
     box-sizing: border-box;
     flex: 1;
-    padding: 0 20px 51px;
+    padding: 0 35px 51px;
     height: 100vh;
     overflow: hidden;
   }

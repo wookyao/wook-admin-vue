@@ -20,7 +20,7 @@ const routers = new Router({
 
 routers.beforeEach((to, from, next) => {
   const meta = to.meta || {}
-  document.title = meta.title || 'wook-admin'
+  document.title = `${meta.title}-WOOKADMIN` || 'WOOKADMIN'
 
   next()
 })

@@ -12,8 +12,8 @@ module.exports = {
     loaderOptions: {
       less: {
         modifyVars: {
-          'primary-color': '#00E6BF',
-          'success-color': '#00E6BF',
+          'primary-color': '#4DBAE2',
+          'success-color': '#4DBAE2',
           'error-color': '#FF8585'
         },
         javascriptEnabled: true
