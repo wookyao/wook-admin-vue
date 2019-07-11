@@ -9,10 +9,8 @@
       <BottomBar :inlineCollapsed='inlineCollapsed' />
     </div>
     <div class="main">
-      <RouterTabs />
-      <scroll-view>
-        <router-view />
-      </scroll-view>
+      <Header :title='headerTitle' />
+      <router-view />
     </div>
   </div>
 </template>
@@ -23,8 +21,7 @@ import Trapezoid from 'components/Trapezoid'
 import Logo from 'components/Logo'
 import SideMenu from 'components/SideMenu'
 import BottomBar from 'components/BottomBar'
-import RouterTabs from 'components/RouterTabs'
-import { Icon } from 'ant-design-vue'
+import Header from 'components/Header'
 
 export default {
   name: 'AdminIndex',
@@ -35,15 +32,21 @@ export default {
     Logo,
     SideMenu,
     BottomBar,
-    RouterTabs,
-    [Icon.name]: Icon
+    Header
+  },
+
+  watch: {
+    '$route.path': (newVal, oldVal) => {
+      console.log(newVal)
+    }
   },
 
   data () {
     return {
       inlineCollapsed: false,
       menus: [],
-      logo: require('@/assets/images/logo.png')
+      logo: require('@/assets/images/logo.png'),
+      headerTitle: ''
     }
   },
 
@@ -71,6 +74,7 @@ export default {
   },
 
   created () {
+    this.headerTitle = this.$route.meta.title
     this.getMenus()
   }
 }

@@ -1,7 +1,8 @@
 export default {
   namespaced: true,
   state: {
-    history: []
+    history: [],
+    title: ''
   },
   mutations: {
     addHistoy (state, router) {
@@ -14,6 +15,10 @@ export default {
         state.history = history
         history = null
       }
+    },
+
+    setTitle (state, value) {
+      state.title = value
     }
   }
 }

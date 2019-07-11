@@ -4,6 +4,10 @@ export default {
   component: () => import('pages/admin/index.vue'),
   children: [{
     path: 'home',
-    component: () => import('views/components/home.vue')
+    component: () => import('views/components/home.vue'),
+    meta: {
+      title: '工作台',
+      role: [0]
+    }
   }]
 }
