@@ -34,7 +34,7 @@
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "mockjs": "^1.0.1-beta3",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.13.1",
     "postcss-pxtorem-each": "^0.0.2",
     "rimraf": "^2.6.3",
     "sass-loader": "^7.1.0",
